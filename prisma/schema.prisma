@@ -1,0 +1,59 @@
+// Prisma schema for Accounting Services Pricebook
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model ServiceComponent {
+  id               String   @id @default(cuid())
+  name             String
+  description      String
+  estimatedHours   Float    // Backend: for cost calculation
+  billableRate     Float    // Backend: dollars per hour
+  price            Float    // Frontend: what customer sees
+  photoUrl         String?  // Optional photo
+  isActive         Boolean  @default(true)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  // Many-to-many relationship with bundles
+  bundles          BundleComponent[]
+
+  @@index([isActive])
+}
+
+model ServiceBundle {
+  id               String   @id @default(cuid())
+  name             String
+  description      String
+  flatPrice        Float    // Discounted bundle price
+  photoUrl         String?  // Optional photo
+  isActive         Boolean  @default(true)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  // Many-to-many relationship with components
+  components       BundleComponent[]
+
+  @@index([isActive])
+}
+
+// Join table for many-to-many relationship
+model BundleComponent {
+  id          String   @id @default(cuid())
+  bundleId    String
+  componentId String
+  quantity    Int      @default(1) // How many times this component is included
+
+  bundle      ServiceBundle    @relation(fields: [bundleId], references: [id], onDelete: Cascade)
+  component   ServiceComponent @relation(fields: [componentId], references: [id], onDelete: Cascade)
+
+  @@unique([bundleId, componentId])
+  @@index([bundleId])
+  @@index([componentId])
+}
