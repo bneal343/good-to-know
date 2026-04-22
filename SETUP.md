@@ -49,6 +49,7 @@ Once running, you can access:
 - **Pricebook**: `http://localhost:3000/pricebook` - Client-facing catalog
 - **Manage Components**: `http://localhost:3000/admin/components` - Add/edit services
 - **Manage Bundles**: `http://localhost:3000/admin/bundles` - Create bundles
+- **Revenue Dashboard**: `http://localhost:3000/dashboard` - Housecall Pro revenue and average ticket
 
 ## Database Management
 
@@ -77,7 +78,12 @@ For production deployment, create a `.env` file:
 ```env
 DATABASE_URL="file:./dev.db"
 NODE_ENV="production"
+HOUSECALL_PRO_API_KEY="your-housecall-pro-api-key"
+HOUSECALL_PRO_BASE_URL="https://api.housecallpro.com"
+HOUSECALL_PRO_JOBS_PATH="/jobs"
 ```
+
+> Keep your Housecall API key in `.env` only. Never hardcode it in your source files.
 
 ## Troubleshooting
 

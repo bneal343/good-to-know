@@ -18,6 +18,12 @@ A professional pricebook application for accounting services that enables you to
 - Control component quantities in bundles
 - Visual display of bundle value vs. price
 
+### Revenue Dashboard (Housecall Pro)
+- Pulls jobs data from Housecall Pro API via secure server-side route
+- Calculates total revenue and average ticket size
+- Filter by start and end date
+- Extensible structure for future KPIs
+
 ### Client-Facing Pricebook
 - Professional, clean interface showing only relevant information
 - Clients see: Price, Description, and Photos
@@ -146,6 +152,7 @@ Clients see a professional presentation with prices, descriptions, and photos. C
 │   │   ├── components/      # Component API routes
 │   │   └── bundles/         # Bundle API routes
 │   ├── pricebook/           # Client-facing pricebook
+│   ├── dashboard/          # Revenue dashboard
 │   ├── layout.tsx           # Root layout with navigation
 │   ├── page.tsx             # Home page
 │   └── globals.css          # Global styles
@@ -184,3 +191,16 @@ MIT
 ## Support
 
 For issues or questions, please open an issue in the repository.
+
+
+## Housecall Pro Dashboard Configuration
+
+Add these variables to your `.env` file:
+
+```env
+HOUSECALL_PRO_API_KEY="your-housecall-pro-api-key"
+HOUSECALL_PRO_BASE_URL="https://api.housecallpro.com"
+HOUSECALL_PRO_JOBS_PATH="/jobs"
+```
+
+The dashboard endpoint is `GET /api/housecall/metrics` and accepts optional `startDate` and `endDate` query parameters in `YYYY-MM-DD` format.

@@ -12,7 +12,7 @@ export default function HomePage() {
             Professional accounting services with flexible pricing and money-saving bundles
           </p>
 
-          <div className="grid md:grid-cols-3 gap-8 mt-12">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
             <Link href="/pricebook" className="card hover:shadow-xl transition-shadow">
               <div className="text-4xl mb-4">📊</div>
               <h2 className="text-2xl font-semibold mb-2">View Pricebook</h2>
@@ -34,6 +34,14 @@ export default function HomePage() {
               <h2 className="text-2xl font-semibold mb-2">Manage Bundles</h2>
               <p className="text-gray-600">
                 Create and manage service bundles with discounted pricing
+              </p>
+            </Link>
+
+            <Link href="/dashboard" className="card hover:shadow-xl transition-shadow">
+              <div className="text-4xl mb-4">💰</div>
+              <h2 className="text-2xl font-semibold mb-2">Revenue Dashboard</h2>
+              <p className="text-gray-600">
+                Track revenue and average ticket from Housecall Pro
               </p>
             </Link>
           </div>

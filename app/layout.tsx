@@ -34,6 +34,9 @@ export default function RootLayout({
                 <Link href="/admin/bundles" className="text-gray-600 hover:text-gray-900 px-3 py-2">
                   Manage Bundles
                 </Link>
+                <Link href="/dashboard" className="text-gray-600 hover:text-gray-900 px-3 py-2">
+                  Revenue Dashboard
+                </Link>
               </div>
             </div>
           </div>
